@@ -1,0 +1,17 @@
+#include<stdio.h>
+int gcd(int a,int b)
+{
+	int l=a<b?a:b;
+	int g=a>=b?a:b;
+	
+	while(l!=1)
+	{
+		int r=g%l;
+		g=l;
+		l=r;
+	}
+}
+int main()
+{
+	return 0;
+}

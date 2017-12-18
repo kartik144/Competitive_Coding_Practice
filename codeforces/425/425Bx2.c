@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+int isAlpha(char ch)
+{
+	if(ch>='a' && ch<='z')
+	return 1;
+	else
+	return 0;
+}
+int main()
+{
+	char h[27],s[10000],t[10000];
+	int i,n,hash[26],j,k,l1,l2,flag,x;
+	
+	scanf(" %s",h);
+	scanf(" %s",s);
+	l1=strlen(s);
+	scanf(" %d",&n);
+	
+	for(i=0;i<26;i++)
+	hash[i]=0;
+	
+	for(i=0;i<strlen(h);i++)
+	hash[(int)h[i]-97]=1;
+	
+	for(i=0;i<n;i++)
+	{
+		scanf(" %s",t);
+		l2=strlen(t);
+		
+		//x=(l1==l2)?1:0;
+		flag=1;
+		
+		for(j=0,k=0;j<l1 && k<l2;j++,k++)
+		{
+			//printf("%d %d",l1,l2);
+			//printf("%c %c %d\n",s[j],t[k],flag);
+			
+			if(s[j]!=t[k] && isAlpha(s[j])==1)
+			{
+				//printf("*");
+				flag=0;
+				break;
+			}
+			else if(s[j]!=t[k] && s[j]=='?')
+			{
+				if(hash[(int)t[j]-97]!=1)
+				{
+					//printf("**");
+					flag=0;
+					break;
+				}
+			}
+			else if(s[j]!=t[k] && s[j]=='*')
+			{
+				if(l1==l2 && hash[(int)t[k]-97]==1)
+				{	
+					//printf("%c %d\n",t[k],hash[(int)t[k]-97]);
+					flag=0;
+					break;
+				}
+				else if(hash[(int)t[k]-97]==0)
+				{
+					while(k<=l2 && hash[(int)t[k]-97]==0)
+					k++;
+				
+					k--;
+				}
+				else if(hash[(int)t[k]-97]==1)
+				{	
+					flag=0;
+					break;
+				}
+			}
+		}
+		
+		if(flag)
+		printf("YES\n");
+		else
+		printf("NO\n");
+	}
+	
+	return 0;
+}

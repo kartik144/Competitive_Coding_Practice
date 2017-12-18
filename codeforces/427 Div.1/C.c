@@ -1,0 +1,46 @@
+#include<stdio.h>
+int main()
+{
+	int n,q,c,i,j,t,x1,x2,y1,y2;
+	scanf("%d %d %d",&n,&q,&c);
+	
+	int star[n][3];
+	
+	for(i=0;i<n;i++)
+	scanf("%d %d %d",&star[i][0],&star[i][1],&star[i][2]);
+	
+	
+	
+	for(i=0;i<q;i++)
+	{
+		scanf("%d %d %d %d %d",&t,&x1,&y1,&x2,&y2);
+		int count=0;
+		int b[n][t];
+		
+		for(i=0;i<n;i++)
+		{
+			b[i][0]=star[i][2];
+		
+			for(j=1;j<t;j++)
+			if(b[i][j-1]+1<=c)
+			b[i][j]=b[i][j-1]+1;
+			else
+			b[i][j]=0;
+		}
+		
+		for(j=0;j<n;j++)
+		{
+			if(star[j][0]>=x1 && star[j][0]<=x2 && star[j][1]>=y1 && star[j][1]<=y2)
+			{
+				count+=b[j][t];
+				//printf("%d %d %d\n",i,j,b[j][t]);
+			}
+		}
+		//else
+		//printf("Machuda\n");
+		
+		printf("%d\n",count);
+	}
+	
+	return 0;
+}

@@ -1,0 +1,57 @@
+#include<stdio.h>
+int main()
+{	
+	int i_test,test;
+	scanf("%d",&test);
+	
+	for(i_test=1;i_test<=test;i_test++)
+	{
+		int N,Ts,Tf;
+		scanf("%d %d %d",&N,&Ts,&Tf);
+		
+		int arr[N-1][3];
+		
+		int i;
+		for(i=0;i<N-1;i++)
+		scanf("%d %d %d",&arr[i][0],&arr[i][1],&arr[i][2]);
+		
+		int t=0,min_t=0;
+		
+		for(i=0;i<N-1;i++)
+		{
+			if(i==0)
+			min_t=arr[i][0]+arr[i][2];
+			else
+			{
+				
+				int x=0;
+				while(min_t%12>(arr[i][0]+x*arr[i][1])%12)
+				x++;
+			
+				min_t+=x*arr[i][1]+arr[i][0]-min_t%12+arr[i][2];
+				
+			}	
+			
+		}
+		//printf("%d\n",min_t);
+		
+		if(min_t>Tf)
+		printf("Case #%d: IMPOSSIBLE",)
+		int city=0;
+		
+		for(i=0;i<N-1;i++)
+		{
+			if(i==0)
+			{
+				t=arr[i][0]+arr[i][2];
+				if(arr[i][0]>=Ts)
+				city++;
+			}
+			else
+			{
+				
+			}
+		}
+	}
+	return 0;
+}
